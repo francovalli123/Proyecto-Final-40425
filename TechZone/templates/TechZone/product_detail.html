@@ -1,29 +1,29 @@
 {% extends "TechZone/base.html" %}
 
 {% block main %}
-<p>
-    <h1>{{object.titulo}}</h1>
-    <br>
-    {% if product.imagen %}
-     <img src="{{ object.imagen.url }}" width="320px" height="100%">
+
+<div class="container my-5">
+  <h1 class="text-center">{{object.titulo}}</h1>
+  <div class="row justify-content-center my-4">
+    {% if object.imagen %}
+      <div class="col-md-6">
+        <img src="{{ object.imagen.url }}" class="img-fluid" alt="{{ object.titulo }}">
+      </div>
     {% endif %}
-    <br>
-    <p>𝗣𝗿𝗲𝗰𝗶𝗼: {{object.precio }}
-    <br>
-    <h6>Descripción</h6>
-        {{object.descripcion}}
-    <br>   
-        𝗘𝘀𝘁𝗮𝗱𝗼: {{object.estado}}
-    <h6>Lo que tenes que saber de este producto</h6>
-        - {{object.item1}}
-    <br>
-        - {{object.item2}}
-    <br>
-        - {{object.item3}}
-    <br>
-        - {{object.creado_el}}
-    </p>
-    <br>
-    <a href="{% url 'product-list' %}"> Volver</a>
-</p>
+    <div class="col-md-6">
+      <p class="lead">Precio: {{object.precio}}</p>
+      <h6>Descripción</h6>
+      <p>{{object.descripcion}}</p>
+      <p>Estado: {{object.estado}}</p>
+      <h6>Lo que tenes que saber de este producto</h6>
+      <ul>
+        <li>{{object.item1}}</li>
+        <li>{{object.item2}}</li>
+        <li>{{object.item3}}</li>
+      </ul>
+      <p>Creado el: {{object.creado_el}}</p>
+      <a href="{% url 'product-list' %}" class="btn btn-primary">Volver</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

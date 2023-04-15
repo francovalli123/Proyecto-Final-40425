@@ -1,44 +1,37 @@
 {% extends "TechZone/base.html" %}
 
 {% block main %} 
+  <div class="container my-5">
+    <h1 class="text-center mb-5"> Lista de productos </h1>
 
-<h1> Lista de productos</h1>  
-    <form>
-     <p>
-            <label for="criterio_nombre">Producto:</label>
-            <input type="text" name="criterio_nombre" maxlength="100" required="" id="criterio_nombre">   
-         </p> 
-        <p>
-            <input type="submit" value="Buscar">
-        </p>
+    <form class="mb-5">
+      <div class="form-group">
+        <label for="criterio_nombre">Producto:</label>
+        <input type="text" class="form-control" name="criterio_nombre" maxlength="100" required="" id="criterio_nombre">
+      </div> 
+      <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-    <ul>
       {% if not object_list %}
-        <h2>No hay productos aún.</h2>
-        {% endif %}
-    {% for product in object_list %}
- 
-    <li>
-        <div class="col">
-            <div class="card shadow-sm">
-                {% if product.imagen %}
-                    <img class="card-image-top"  style="height: 190px;width: 50%;display: block;"src="{{product.image_url}}" data-holder-rendered="true">
-                {% endif %}
-              <div class="card-body">
-        {{product}} 
-            <br>
-            <a href="{% url 'product-detail' product.id %}"> Detalles</a>
-        {% if user.is_authenticated and product.publisher == user %}
-            <a href="{% url 'product-update' product.id %}"> Actualizar</a>
-            <a href="{% url 'product-delete' product.id %}"> Borrar</a>
-        {% endif %}
-              </div>
-    </li>
-    {% endfor %}
-    </ul>
+        <h2 class="text-center">No hay productos aún.</h2>
+      {% endif %}
 
-</div>
+      {% for product in object_list %}
+        <div class="col mb-4">
+          <div class="card shadow-sm h-100">
+            <img class="card-img-top" src="{{product.image_url}}" style="height: 190px; width: 60%; display: block;" alt="{{product}}">
+            <div class="card-body">
+              <h5 class="card-title">{{product}}</h5>
+              <a href="{% url 'product-detail' product.id %}" class="btn btn-primary mt-2">Detalles</a>
+              {% if user.is_authenticated and product.publisher == user %}
+                <a href="{% url 'product-update' product.id %}" class="btn btn-secondary mt-2">Actualizar</a>
+                <a href="{% url 'product-delete' product.id %}" class="btn btn-danger mt-2">Borrar</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

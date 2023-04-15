@@ -2,21 +2,26 @@
 
 {% block main %}
 
-<h1>Lista de mensajes</h1>
-<ul>
-    {% if not mensajes %}
-      <h2>No hay mensajes aún.</h2>
-    {% endif %}
- 
-    {% for mensaje in mensajes %}
+<div class="container my-5">
+  <h1 class="text-center">Lista de mensajes</h1>
+  <div class="row justify-content-center my-4">
+    <div class="col-md-8">
+      <ul class="list-unstyled">
+        {% if not mensajes %}
+          <h2>No hay mensajes aún.</h2>
+        {% endif %}
+        {% for mensaje in mensajes %}
+          <li class="mb-4">
+            <p class="font-weight-bold">Remitente: {{mensaje.email}}</p>
+            <p>Mensaje: {{mensaje.mensaje}}</p>
+            {% if user.is_authenticated and mensaje.destinatario == user %}
+              <a href="{% url 'mensaje-delete' mensaje.id %}" class="btn btn-danger">Borrar</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 
-  <li>
-      <p>{{mensaje.email}}</p>      
-      <p>{{mensaje.mensaje}}</p>
-      {% if user.is_authenticated and mensaje.destinatario == user %}
-          <a href="{% url 'mensaje-delete' mensaje.id %}"> Borrar</a>
-      {% endif %}
-  </li>
-  {% endfor %}
-  </ul>
 {% endblock %}
