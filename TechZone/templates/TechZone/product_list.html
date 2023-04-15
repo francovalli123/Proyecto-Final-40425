@@ -4,14 +4,6 @@
   <div class="container my-5">
     <h1 class="text-center mb-5"> Lista de productos </h1>
 
-    <form class="mb-5">
-      <div class="form-group">
-        <label for="criterio_nombre">Producto:</label>
-        <input type="text" class="form-control" name="criterio_nombre" maxlength="100" required="" id="criterio_nombre">
-      </div> 
-      <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
-
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% if not object_list %}
         <h2 class="text-center">No hay productos aún.</h2>
@@ -32,6 +24,8 @@
           </div>
         </div>
       {% endfor %}
+      
     </div>
+    <a href="{% url 'home' %}" class="btn btn-dark">Volver</a>
   </div>
 {% endblock %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from TechZone.views import index, ProductList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete, SignUp, Login, Logout, ProfileUpdate, BuscarProducto, ProfileCreate, ProfileDetail, MensajeCreate, MensajeDelete, MensajeList, about
+from TechZone.views import index, ProductList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete, SignUp, Login, Logout, ProfileUpdate, ProfileCreate, ProfileDetail, MensajeCreate, MensajeDelete, MensajeList, about
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,7 +24,6 @@ urlpatterns = [
     path('', index, name="home"),
     path('about/', about, name="about"),
     path('product/list', ProductList.as_view(), name="product-list"),
-    path('product/search', BuscarProducto.as_view(), name="product-search"),
     path('product/<pk>/detail', ProductDetail.as_view(), name="product-detail"),
     path('product/create', ProductCreate.as_view(), name="product-create"),
     path('product/<pk>/update', ProductUpdate.as_view(), name="product-update"),

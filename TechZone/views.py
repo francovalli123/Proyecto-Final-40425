@@ -56,16 +56,6 @@ class ProductDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def handle_no_permission(self):
         return render(self.request, "TechZone/not_found.html")
 
-class BuscarProducto(ListView):
-    model = Product
-    context_object_name = "productos"
-
-    def get_queryset(self):
-        f = BuscarProductoForm(self.request.GET)
-        if f.is_valid():
-           return Product.objects.filter(producto__icontains=f.data["criterio_nombre"]).all()
-        return Product.objects.none()
-
 class SignUp(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
