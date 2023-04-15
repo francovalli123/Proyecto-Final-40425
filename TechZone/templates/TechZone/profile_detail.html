@@ -1,0 +1,15 @@
+{% extends "TechZone/base.html" %}
+
+{% block main %}
+<p>
+    <h1>{{profile.user}}</h1>
+    <br>
+    {% if profile.imagen %}
+     <img src="{{ profile.imagen.url }}" width="150px" height="100%" style="border-radius: 10%;">
+    {% endif %}
+    <br>
+    {{profile.info}}
+    <br>
+    <a href="{% url 'home' %}"> Volver</a>
+</p>
+{% endblock %}

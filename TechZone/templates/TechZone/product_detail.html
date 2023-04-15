@@ -1,0 +1,29 @@
+{% extends "TechZone/base.html" %}
+
+{% block main %}
+<p>
+    <h1>{{object.titulo}}</h1>
+    <br>
+    {% if product.imagen %}
+     <img src="{{ object.imagen.url }}" width="320px" height="100%">
+    {% endif %}
+    <br>
+    <p>𝗣𝗿𝗲𝗰𝗶𝗼: {{object.precio }}
+    <br>
+    <h6>Descripción</h6>
+        {{object.descripcion}}
+    <br>   
+        𝗘𝘀𝘁𝗮𝗱𝗼: {{object.estado}}
+    <h6>Lo que tenes que saber de este producto</h6>
+        - {{object.item1}}
+    <br>
+        - {{object.item2}}
+    <br>
+        - {{object.item3}}
+    <br>
+        - {{object.creado_el}}
+    </p>
+    <br>
+    <a href="{% url 'product-list' %}"> Volver</a>
+</p>
+{% endblock %}

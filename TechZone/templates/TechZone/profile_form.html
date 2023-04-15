@@ -1,0 +1,13 @@
+{% extends "TechZone/base.html" %}
+
+{% block main %}
+{% if not profile %}
+    <h1>Crear perfil</h1>
+{% endif %}
+    <h2>Perfil</h2>
+    <form method="POST" enctype="multipart/form-data">
+         {% csrf_token %}   
+        {{form.as_p}}
+        <input type="submit" value="Guardar">
+    </form>
+{% endblock %}
