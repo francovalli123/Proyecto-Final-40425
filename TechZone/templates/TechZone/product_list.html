@@ -12,7 +12,9 @@
       {% for product in object_list %}
         <div class="col mb-4">
           <div class="card shadow-sm h-100">
+            {% if product.imagen %}
             <img class="card-img-top" src="{{product.image_url}}" style="height: 190px; width: 60%; display: block;" alt="{{product}}">
+            {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{product}}</h5>
               <a href="{% url 'product-detail' product.id %}" class="btn btn-primary mt-2">Detalles</a>
